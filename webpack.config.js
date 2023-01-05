@@ -2,17 +2,20 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: path.join(__dirname, "src", "index.ts"),
   output: {
     path:path.resolve(__dirname, "dist"),
   },
   module: {
+    resolve: {
+      extensions: [ '.tsx', '.ts', '.js' ],
+    },
     rules: [
       {
         test: /\.?js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'ts-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
